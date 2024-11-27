@@ -2,16 +2,19 @@ import { flatMapGen } from './flatMapGen.mjs';
 import { flatMapItr } from './flatMapItr.mjs';
 
 
+console.log('| n | Generators | Iterators | Winner |')
+console.log('|---| -----------| ----------|--------|');
+
 [1, 10, 100, 1000, 10000, 100000].forEach(num => {
     const input = makeInput(num)
     const genOpS = measureOpS(iterNumber => consume(flatMapGen(input, i => ([i + 1, i + iterNumber]))))
     const itrOpS = measureOpS(iterNumber => consume(flatMapItr(input, i => ([i + 2, i + iterNumber]))))
-    const descr = genOpS > itrOpS
-        ? `Generators are ${ roundToOneDigit(genOpS / itrOpS) } times faster`
-        : `Iterators are ${ roundToOneDigit(itrOpS / genOpS) } times faster`
-    console.log(`${num} | ${genOpS} | ${itrOpS} | ${descr}`)
+    const winnerStr = genOpS > itrOpS
+        ? `Generators are ${ roundToOneDigit(genOpS / itrOpS) }x faster`
+        : `Iterators are ${ roundToOneDigit(itrOpS / genOpS) }x faster`
+    console.log(`| ${fmt(num)} | ${fmt(genOpS)} | ${fmt(itrOpS)} | ${winnerStr} |`)
 })
-
+3
 
 function makeInput(n: number) {
     const a = [];
@@ -44,6 +47,17 @@ function measureOpS(op: (iterNumber: number) => unknown){
     return i - iInitial
 }
 
+function fmt(num: number) {
+    const numStr = String(num)
+    let s = ''
+    for (let i = 0; i < numStr.length; i++) {
+        s += numStr.charAt(i)
+        const posFromEnd = numStr.length - 1 - i
+        if (posFromEnd > 0 && posFromEnd % 3 === 0) s += ','
+    }
+    return s
+
+}
 function roundToOneDigit(num: number) {
     return Math.round(num * 10) / 10
 }
