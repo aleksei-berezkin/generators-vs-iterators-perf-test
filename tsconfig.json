@@ -1,0 +1,9 @@
+{
+    "compilerOptions": {
+        "incremental": true,
+        "module": "nodenext",
+        "moduleResolution": "nodenext",
+        "target": "ESNext",
+        "outDir": "out"
+    }
+}

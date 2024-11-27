@@ -1,0 +1,31 @@
+{
+  "name": "generators-vs-iterators-perf-test",
+  "version": "0.0.0",
+  "description": "Generators vs Iterators performance test",
+  "main": "index.ts",
+  "scripts": {
+    "clean": "rm -rf ./out",
+    "build": "npx tsc",
+    "test@run": "node out/test.mjs",
+    "test": "npm-run-all build test@run",
+    "benchmark": "npm-run-all build benchmark@run",
+    "benchmark@run": "node out/benchmark.mjs",
+    "serve": "npm-run-all build serve@copy serve@run",
+    "serve@copy": "cp index.html ./out",
+    "serve@run": "serve ./out"
+  },
+  "type": "module",
+  "keywords": [
+    "generator",
+    "iterator",
+    "performance",
+    "benchmark"
+  ],
+  "author": "Aleksei Berezkin",
+  "license": "ISC",
+  "devDependencies": {
+    "npm-run-all": "^4.1.5",
+    "serve": "^14.2.4",
+    "typescript": "^5.7.2"
+  }
+}
