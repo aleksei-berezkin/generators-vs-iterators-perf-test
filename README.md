@@ -91,3 +91,18 @@
 | 1,000 | 6,050 | 21,231 | Iterators are 3.5x faster |
 | 10,000 | 604 | 2,203 | Iterators are 3.6x faster |
 | 100,000 | 61 | 218 | Iterators are 3.6x faster |
+
+## 3. Results from 2020
+
+### 3.1. node 14.8 on Apple
+
+Interestingly, not that different
+
+| n | Generators | Iterators | Winner |
+|---| -----------| ----------|--------|
+| 1 | 3,466,783 | 1,438,388 | Generators are 2.4x faster |
+| 10 | 486,073 | 621,149 | Iterators are 1.2x faster |
+| 100 | 58,009 | 102,465 | Iterators are 1.8x faster |
+| 1,000 | 5,600 | 10,699 | Iterators are 1.9x faster |
+| 10,000 | 557 | 1,115 | Iterators are 2.0x faster |
+| 100,000 | 54.15 | 106 | Iterators are 2.0x faster |
